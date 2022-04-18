@@ -2,7 +2,7 @@ import PorductsList from "./components/producs/PorductsList";
 
 function App() {
   return (
-    <div className="text-red-500 min-h-screen w-full">
+    <div className="min-h-screen w-full bg-gray-100">
       <PorductsList />
     </div>
   );
