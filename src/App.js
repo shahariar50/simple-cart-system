@@ -6,7 +6,7 @@ import CartButton from "./components/cart/CartButton";
 import Cart from "./components/cart/Cart";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="min-h-screen w-full bg-gray-100 relative">

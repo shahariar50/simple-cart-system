@@ -1,4 +1,7 @@
+import { useCartItemContext } from "../../hooks/useCartItem";
+
 const SingleProduct = ({ product }) => {
+  const { addCartItem } = useCartItemContext();
   return (
     <div className="bg-white shadow-md h-full group relative">
       <div className="overflow-hidden">
@@ -12,7 +15,10 @@ const SingleProduct = ({ product }) => {
         <h3 className="font-medium">{product?.title}</h3>
         <p>৳{product?.price}</p>
       </div>
-      <div className="absolute top-0 left-0 h-full w-full bg-black/60 cursor-pointer flex items-center justify-center text-white text-3xl opacity-0 group-hover:opacity-100 transition duration-300">
+      <div
+        className="absolute top-0 left-0 h-full w-full bg-black/60 cursor-pointer flex items-center justify-center text-white text-3xl opacity-0 group-hover:opacity-100 transition duration-300"
+        onClick={() => addCartItem(product)}
+      >
         Add
       </div>
     </div>

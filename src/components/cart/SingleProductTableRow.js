@@ -1,18 +1,36 @@
-const SingleProductTableRow = () => {
+const SingleProductTableRow = ({
+  cartItem,
+  removeCartItem,
+  setItemQuantity,
+}) => {
   return (
-    <tr className="border-b border-gray-500">
-      <td className="text-sm text-center py-1">Dusty Pink...</td>
-      <td className="text-sm text-center py-1">৳1500</td>
+    <tr>
+      <td
+        className="text-sm text-center py-1 overflow-hidden text-ellipsis whitespace-nowrap"
+        style={{ maxWidth: 80 }}
+      >
+        {cartItem.title}
+      </td>
+      <td className="text-sm text-center py-1">৳{cartItem.price}</td>
       <td className="text-sm text-center py-1">
         <input
           type="number"
-          value={1}
+          value={cartItem.quantity}
+          onChange={({ target }) =>
+            setItemQuantity(cartItem.id, Number(target.value))
+          }
           className="w-12 text-center border border-gray-500"
+          min={1}
         />
       </td>
-      <td className="text-sm text-center py-1">৳1500</td>
       <td className="text-sm text-center py-1">
-        <span class="material-icons text-red-500 text-xl cursor-pointer">
+        ৳{cartItem.quantity * cartItem.price}
+      </td>
+      <td className="text-sm text-center py-1">
+        <span
+          className="material-icons text-red-500 text-xl cursor-pointer"
+          onClick={() => removeCartItem(cartItem.id)}
+        >
           close
         </span>
       </td>
