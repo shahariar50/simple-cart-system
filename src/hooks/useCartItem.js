@@ -8,6 +8,7 @@ const useCartItem = () => {
   );
 
   const addCartItem = (item) => {
+    // Increase quantity if the item is already exist
     if (cartItems.find((data) => data.itemId === item.id)) {
       const newCartItems = cartItems.map((data) =>
         data.itemId === item.id
@@ -15,8 +16,11 @@ const useCartItem = () => {
           : data
       );
       setCartItems(newCartItems);
+      // Set the new cart in localstore
       setLocalStorgeData("cart", newCartItems);
-    } else {
+    }
+    // Adding new item
+    else {
       const newCartItems = [
         ...cartItems,
         {
@@ -28,24 +32,30 @@ const useCartItem = () => {
         },
       ];
       setCartItems(newCartItems);
+      // Set the new cart in localstore
       setLocalStorgeData("cart", newCartItems);
     }
   };
+  // Remove item from the cart
   const removeCartItem = (id) => {
     const newCartItems = cartItems.filter((item) => item.id !== id);
     setCartItems(newCartItems);
+    // Set the new cart in localstore
     setLocalStorgeData("cart", newCartItems);
   };
+  // Resetting item quantity
   const setItemQuantity = (id, quantity) => {
     const newCartItems = cartItems.map((data) =>
       data.id === id ? { ...data, quantity: quantity } : data
     );
     setCartItems(newCartItems);
+    // Set the new cart in localstore
     setLocalStorgeData("cart", newCartItems);
   };
 
   const resetCart = () => {
     setCartItems([]);
+    // Set the new cart in localstore
     setLocalStorgeData("cart", []);
   };
 
