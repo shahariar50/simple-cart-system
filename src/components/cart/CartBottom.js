@@ -29,7 +29,7 @@ const CartBottom = () => {
       </div>
       <button
         className="bg-rose-500 w-full py-2 font-bold text-white rounded-sm"
-        onClick={handlePlaceOrder}
+        onClick={() => cartItems.length > 0 && handlePlaceOrder}
       >
         Place Order
       </button>
