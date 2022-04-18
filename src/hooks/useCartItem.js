@@ -44,7 +44,12 @@ const useCartItem = () => {
     setLocalStorgeData("cart", newCartItems);
   };
 
-  return { cartItems, addCartItem, removeCartItem, setItemQuantity };
+  const resetCart = () => {
+    setCartItems([]);
+    setLocalStorgeData("cart", []);
+  };
+
+  return { cartItems, addCartItem, removeCartItem, setItemQuantity, resetCart };
 };
 
 export const [CartItemProvider, useCartItemContext] = constate(useCartItem);
