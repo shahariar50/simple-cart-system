@@ -17,6 +17,7 @@ const SingleProductTableRow = ({
           type="number"
           value={cartItem.quantity}
           onChange={({ target }) =>
+            Number(target.value) > 0 &&
             setItemQuantity(cartItem.id, Number(target.value))
           }
           className="w-12 text-center border border-gray-500"
