@@ -10,7 +10,7 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="min-h-screen w-full bg-gray-100 relative">
+    <div className="min-h-screen w-full bg-gray-100">
       <ToastContainer />
       <PorductsList />
       <CartButton setIsOpen={setIsOpen} />

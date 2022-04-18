@@ -6,7 +6,7 @@ const SingleProduct = ({ product }) => {
     <div className="bg-white shadow-md h-full group relative">
       <div className="overflow-hidden">
         <img
-          className="transform scale-110 group-hover:scale-100 transition duration-300"
+          className="transform scale-110 group-hover:scale-100 transition duration-300 w-full"
           src={product?.img_url}
           alt={product?.title}
         />
