@@ -1,38 +1,47 @@
 import constate from "constate";
 import { useState } from "react";
+import { getUniqueId, setLocalStorgeData } from "../utils/generelUtils";
 
 const useCartItem = () => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(
+    JSON.parse(window.localStorage?.getItem("cart")) || []
+  );
 
   const addCartItem = (item) => {
     if (cartItems.find((data) => data.itemId === item.id)) {
-      const newCartItem = cartItems.map((data) =>
+      const newCartItems = cartItems.map((data) =>
         data.itemId === item.id
           ? { ...data, quantity: data.quantity + 1 }
           : data
       );
-      setCartItems(newCartItem);
+      setCartItems(newCartItems);
+      setLocalStorgeData("cart", newCartItems);
     } else {
-      setCartItems([
+      const newCartItems = [
         ...cartItems,
         {
-          id: cartItems.length === 0 ? 1 : cartItems.at(-1).id + 1,
+          id: getUniqueId(cartItems),
           title: item.title,
           itemId: item.id,
           quantity: 1,
           price: item.price,
         },
-      ]);
+      ];
+      setCartItems(newCartItems);
+      setLocalStorgeData("cart", newCartItems);
     }
   };
   const removeCartItem = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+    const newCartItems = cartItems.filter((item) => item.id !== id);
+    setCartItems(newCartItems);
+    setLocalStorgeData("cart", newCartItems);
   };
   const setItemQuantity = (id, quantity) => {
-    const newCartItem = cartItems.map((data) =>
-      data.itemId === id ? { ...data, quantity: quantity } : data
+    const newCartItems = cartItems.map((data) =>
+      data.id === id ? { ...data, quantity: quantity } : data
     );
-    setCartItems(newCartItem);
+    setCartItems(newCartItems);
+    setLocalStorgeData("cart", newCartItems);
   };
 
   return { cartItems, addCartItem, removeCartItem, setItemQuantity };
