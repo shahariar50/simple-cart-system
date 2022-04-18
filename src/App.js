@@ -16,7 +16,7 @@ function App() {
         open={isOpen}
         onClose={() => setIsOpen(false)}
         direction="right"
-        size={300}
+        size={350}
       >
         <Cart />
       </Drawer>
